@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import getTrending from '../servisec/api';
+import { getTrending } from '../servisec/api';
 import { NavLink } from 'react-router-dom';
 
-export function Home() {
+function Home() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setisLoading] = useState([null]);
 
@@ -21,17 +21,21 @@ export function Home() {
 
     fetchTrending();
   }, []);
-  // console.log('movies: ', movies);
-
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Найпопулярніші фільми на сьогодні</h1>
       {isLoading && <p>Loading...</p>}
       <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
+        {movies.map(({ id, title, poster_path }) => (
+          <li key={id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              alt={title}
+              width="150"
+            />
+            <br />
             <NavLink style={{ textDecoration: 'none' }}>
-              {movie.original_title}, ID: {movie.id}
+              {title}, ID: #{id}
             </NavLink>
           </li>
         ))}
@@ -39,26 +43,4 @@ export function Home() {
     </div>
   );
 }
-
-/*
-
-export const Home = () => {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setisLoading] = useState([null]);
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const data = await getCountries();
-        setCountries(data);
-        setisLoading(true);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false);
-      }
-    };
-
-    fetchCountries();
-  }, []);
-*/
+export default Home;
