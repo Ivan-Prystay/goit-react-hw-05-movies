@@ -11,6 +11,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 /movies/get-movie-credits запит інформації про акторський склад для сторінки кінофільму.
 /movies/get-movie-reviews запит оглядів для сторінки кінофільму.
 */
+
 // https://api.themoviedb.org/3/trending/movie/day?api_key=d06f3f881af415394d900f66e6d54b92
 
 export async function getTrending() {
@@ -21,6 +22,7 @@ export async function getTrending() {
     console.error(error);
   }
 }
+//https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 
 export async function getMovie(query) {
   try {
@@ -33,4 +35,16 @@ export async function getMovie(query) {
   }
 }
 
-//https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+//https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
+export async function getMovieDetails(movie_id) {
+  try {
+    const response = await axios.get(
+      `/movie/${movie_id}?api_key=${API_KEY}&language=en-US`
+    );
+    console.log('response: ', response.data.title);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
