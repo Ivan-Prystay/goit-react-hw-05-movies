@@ -27,6 +27,8 @@ function Cast() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, 200px)',
             gap: '16px',
+            justifyContent: 'center',
+            justifyItems: 'center',
           }}
         >
           {casts.map(({ name, id, profile_path, character }) => (
