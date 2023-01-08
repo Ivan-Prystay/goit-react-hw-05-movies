@@ -19,16 +19,22 @@ function Reviews() {
 
   return (
     <div>
-      <h3>Reviews</h3>
-      <ul>
-        {reviews.map(({ content, author, id }) => (
-          <li key={id}>
-            <h4>Author: {author}</h4>
-            {content}
-            <br />
-          </li>
-        ))}
-      </ul>
+      {reviews.length !== 0 ? (
+        <>
+          <h3>Reviews</h3>
+          <ul>
+            {reviews.map(({ content, author, id }) => (
+              <li key={id}>
+                <h4>Author: {author}</h4>
+                {content}
+                <br />
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <h3>We don't have any reviews for this movie.</h3>
+      )}
     </div>
   );
 }

@@ -19,11 +19,10 @@ function MovieDetails() {
     fetchMovieDetails();
   }, [id]);
   const { poster_path, title, overview } = movie;
-  console.log('movie: ', movie.id);
 
   return (
     <main>
-      <button type="button" onClick={() => navigate('/', { replace: true })}>
+      <button type="button" onClick={() => navigate('/', { replace: false })}>
         Go back
       </button>
       {movie.id === +id && (
