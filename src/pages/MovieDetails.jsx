@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { getMovieDetails } from '../servisec/api';
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -22,7 +23,9 @@ function MovieDetails() {
 
   return (
     <main>
-      <button type="button">Go back</button>
+      <button type="button" onClick={() => navigate('/', { replace: true })}>
+        Go back
+      </button>
       {movie.id === +id && (
         <>
           <article>

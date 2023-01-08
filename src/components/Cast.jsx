@@ -39,6 +39,7 @@ function Cast() {
                 borderRadius: '15px',
                 marginTop: '15px',
                 padding: '15px',
+                width: '160px',
               }}
             >
               <img
@@ -51,6 +52,7 @@ function Cast() {
                 style={{
                   width: '150px',
                   borderRadius: '14px',
+                  justifyContent: 'center',
                 }}
               />
               <div>
