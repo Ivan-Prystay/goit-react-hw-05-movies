@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import {
   NavLink,
   Outlet,
@@ -7,8 +7,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { getMovieDetails } from '../servisec/api';
-import noImage from '../images/no-image.png';
-
+import { NoImage, Image } from '../components/MoviesList.styled';
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
@@ -39,15 +38,15 @@ function MovieDetails() {
         <>
           <article>
             <h2>{title}</h2>
-            <img
-              src={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : noImage
-              }
-              alt={title}
-              width="50%"
-            />
+
+            {poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                alt={title}
+              />
+            ) : (
+              <NoImage> </NoImage>
+            )}
             <p>{overview}</p>
           </article>
           <h3>Aditional information</h3>
@@ -58,7 +57,9 @@ function MovieDetails() {
           <NavLink to="reviews" state={backLink}>
             Reviews
           </NavLink>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </main>

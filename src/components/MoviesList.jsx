@@ -1,5 +1,7 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import noImage from '../images/no-image.png';
+import { useLocation } from 'react-router-dom';
+// import noImage from '../images/no-image.png';
+// import { FaUserAlt } from 'react-icons/fa';
+import { NoImage, Image, StyledLink } from './MoviesList.styled';
 
 function MoviesList({ movies }) {
   const location = useLocation();
@@ -24,25 +26,20 @@ function MoviesList({ movies }) {
             width: '240px',
           }}
         >
-          <NavLink
-            to={`/movies/${id}`}
-            state={{ from: location }}
-            style={{ textDecoration: 'none' }}
-          >
-            <img
-              src={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : noImage
-              }
-              alt={title}
-              width="200px"
-            />
+          <StyledLink to={`/movies/${id}`} state={{ from: location }}>
+            {poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                alt={title}
+              />
+            ) : (
+              <NoImage> </NoImage>
+            )}
             <br />
             {title}
             <br />
             Release date: {release_date}
-          </NavLink>
+          </StyledLink>
         </li>
       ))}
     </ul>
