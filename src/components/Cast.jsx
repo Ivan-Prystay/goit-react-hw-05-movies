@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import {  useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCast } from '../servisec/api';
-
+import { NoPhoto } from './MoviesList.styled';
 function Cast() {
   const [casts, setCasts] = useState([]);
   const { id } = useParams();
-
 
   useEffect(() => {
     const fetchCast = async () => {
@@ -43,19 +42,19 @@ function Cast() {
                 width: '160px',
               }}
             >
-              <img
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w200/${profile_path}`
-                    : 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
-                }
-                alt={name}
-                style={{
-                  width: '150px',
-                  borderRadius: '14px',
-                  justifyContent: 'center',
-                }}
-              />
+              {profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
+                  alt={name}
+                  style={{
+                    width: '150px',
+                    borderRadius: '14px',
+                    justifyContent: 'center',
+                  }}
+                />
+              ) : (
+                <NoPhoto />
+              )}
               <div>
                 <p
                   style={{

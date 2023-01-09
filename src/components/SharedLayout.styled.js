@@ -3,13 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   padding: 15px;
-  border: 2px tomato dotted;
+  background-color: rgba(68, 106, 175, 1);
+  min-height: 100vh;
 `;
 
 export const Menu = styled.nav`
   display: flex;
   background-color: lightgray;
   align-items: center;
+  border-radius: 4px;
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -23,12 +25,12 @@ export const MenuLink = styled(NavLink)`
   font-size: 20px;
 
   :hover {
-    background-color: blue;
+    background-color: #3f51b5;
     color: white;
   }
 
   &.active {
-    background-color: skyblue;
+    background-color: #87ceeb;
     color: white;
   }
 `;

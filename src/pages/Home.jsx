@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getTrending } from '../servisec/api';
 import MoviesList from '../components/MoviesList';
+import { Loader } from '../components/Loader';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -24,13 +25,8 @@ function Home() {
 
   return (
     <main>
-      {isLoading && <p>Loading...</p>}
-      {movies.length > 0 && !isLoading && (
-        <>
-          <h2>Trending today</h2>
-          <MoviesList movies={movies} />
-        </>
-      )}
+      {isLoading && <Loader />}
+      {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
     </main>
   );
 }

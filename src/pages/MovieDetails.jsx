@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { getMovieDetails } from '../servisec/api';
 import { NoImage, Image } from '../components/MoviesList.styled';
+import { Loader } from '../components/Loader';
+
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
@@ -27,7 +29,8 @@ function MovieDetails() {
     };
     fetchMovieDetails();
   }, [id]);
-  const { poster_path, title, overview } = movie;
+  const { poster_path, title, overview, vote_average, release_date, genres } =
+    movie;
 
   return (
     <main>
@@ -38,15 +41,17 @@ function MovieDetails() {
         <>
           <article>
             <h2>{title}</h2>
-
             {poster_path ? (
               <Image
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 alt={title}
               />
             ) : (
-              <NoImage> </NoImage>
+              <NoImage />
             )}
+            <p> {`(${new Date(release_date).getFullYear()})`} </p>
+            <p>User score: {Number(vote_average * 10).toFixed(2)} %</p>
+            <p>Genres: {genres.map(genre => genre.name).join(', ')}</p>
             <p>{overview}</p>
           </article>
           <h3>Aditional information</h3>
@@ -57,7 +62,7 @@ function MovieDetails() {
           <NavLink to="reviews" state={backLink}>
             Reviews
           </NavLink>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </>
