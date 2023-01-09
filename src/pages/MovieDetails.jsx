@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
+import {
+  NavLink,
+  Outlet,
+  useParams,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import { getMovieDetails } from '../servisec/api';
+import noImage from '../images/no-image.png';
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
+  const backLink = { from: location.state?.from } ?? '/';
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -22,7 +32,7 @@ function MovieDetails() {
 
   return (
     <main>
-      <button type="button" onClick={() => navigate('/', { replace: false })}>
+      <button type="button" onClick={() => navigate(backLinkHref)}>
         Go back
       </button>
       {movie.id === +id && (
@@ -33,7 +43,7 @@ function MovieDetails() {
               src={
                 poster_path
                   ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : 'https://scontent.fdnk3-1.fna.fbcdn.net/v/t39.30808-6/300614120_749109123105649_7622428468907354468_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nj1Gm9nirBoAX-dJjk4&_nc_ht=scontent.fdnk3-1.fna&oh=00_AfB1EUdkgwU_1P5CtK9vIDObWxzYJydKjw-mFgQQwC4HBA&oe=63BB0B8A'
+                  : noImage
               }
               alt={title}
               width="25%"
@@ -41,9 +51,13 @@ function MovieDetails() {
             <p>{overview}</p>
           </article>
           <h3>Aditional information</h3>
-          <NavLink to="cast">Cast</NavLink>
+          <NavLink to="cast" state={backLink}>
+            Cast
+          </NavLink>
           <br />
-          <NavLink to="reviews">Reviews</NavLink>
+          <NavLink to="reviews" state={backLink}>
+            Reviews
+          </NavLink>
           <Outlet />
         </>
       )}

@@ -1,6 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import noImage from '../images/no-image.png';
 
 function MoviesList({ movies }) {
+  const location = useLocation();
   return (
     <ul
       style={{
@@ -22,12 +24,16 @@ function MoviesList({ movies }) {
             width: '240px',
           }}
         >
-          <NavLink to={`/movies/${id}`} style={{ textDecoration: 'none' }}>
+          <NavLink
+            to={`/movies/${id}`}
+            state={{ from: location }}
+            style={{ textDecoration: 'none' }}
+          >
             <img
               src={
                 poster_path
                   ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : 'https://scontent.fdnk3-1.fna.fbcdn.net/v/t39.30808-6/300614120_749109123105649_7622428468907354468_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nj1Gm9nirBoAX-dJjk4&_nc_ht=scontent.fdnk3-1.fna&oh=00_AfB1EUdkgwU_1P5CtK9vIDObWxzYJydKjw-mFgQQwC4HBA&oe=63BB0B8A'
+                  : noImage
               }
               alt={title}
               width="200px"

@@ -8,10 +8,11 @@ function Home() {
 
   useEffect(() => {
     const fetchMovie = async () => {
+      setisLoading(true);
+
       try {
         const data = await getTrending();
         setMovies(data.data.results);
-        setisLoading(true);
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -23,9 +24,13 @@ function Home() {
 
   return (
     <main>
-      <h2>Trending today</h2>
       {isLoading && <p>Loading...</p>}
-      <MoviesList movies={movies} />
+      {movies.length > 0 && !isLoading && (
+        <>
+          <h2>Trending today</h2>
+          <MoviesList movies={movies} />
+        </>
+      )}
     </main>
   );
 }

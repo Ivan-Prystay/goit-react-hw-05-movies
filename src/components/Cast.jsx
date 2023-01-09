@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { getCast } from '../servisec/api';
 
 function Cast() {
   const [casts, setCasts] = useState([]);
   const { id } = useParams();
+
 
   useEffect(() => {
     const fetchCast = async () => {
