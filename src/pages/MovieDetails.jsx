@@ -14,8 +14,8 @@ function MovieDetails() {
   const [movie, setMovie] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
-  const backLink = { from: location.state?.from } ?? '/';
+  const backLinkHref = location.state?.from ?? '/';
+  const backLink = location.state ?? '/';
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -46,7 +46,7 @@ function MovieDetails() {
                   : noImage
               }
               alt={title}
-              width="25%"
+              width="50%"
             />
             <p>{overview}</p>
           </article>
