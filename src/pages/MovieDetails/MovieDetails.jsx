@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { getMovieDetails } from '../../servisec/api';
+import { getMovieDetails } from '../../services/api';
 
 import {
   ButtonBack,

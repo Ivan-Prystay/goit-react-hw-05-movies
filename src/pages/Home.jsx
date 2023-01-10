@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTrending } from '../servisec/api';
+import { getTrending } from '../services/api';
 import MoviesList from '../components/MoviesList/MoviesList';
 import { Loader } from '../components/Loader';
 

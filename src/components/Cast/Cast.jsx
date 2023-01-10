@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCast } from '../../servisec/api';
+import { getCast } from '../../services/api';
 import { NoPhoto } from '../MoviesList/MoviesList.styled';
 import { CastList, CastItem, Image, Name, Character } from './Cast.styled';
 

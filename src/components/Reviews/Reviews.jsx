@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getReviews } from '../../servisec/api';
+import { getReviews } from '../../services/api';
 
 import {
   ReviewsList,
