@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from '../../services/api';
 import { NoPhoto } from '../MoviesList/MoviesList.styled';
-import { CastList, CastItem, Image, Name, Character } from './Cast.styled';
+import {
+  CastList,
+  CastItem,
+  Image,
+  Name,
+  Character,
+  NoCast,
+} from './Cast.styled';
 
 function Cast() {
   const [casts, setCasts] = useState([]);
@@ -21,22 +28,28 @@ function Cast() {
   }, [id]);
 
   return (
-    <CastList>
-      {casts.map(({ name, id, profile_path, character }) => (
-        <CastItem key={id}>
-          {profile_path ? (
-            <Image
-              src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-              alt={name}
-            />
-          ) : (
-            <NoPhoto />
-          )}
-          <Name>{name}</Name>
-          <Character>{character}</Character>
-        </CastItem>
-      ))}
-    </CastList>
+    <>
+      {casts.length !== 0 ? (
+        <CastList>
+          {casts.map(({ name, id, profile_path, character }) => (
+            <CastItem key={id}>
+              {profile_path ? (
+                <Image
+                  src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
+                  alt={name}
+                />
+              ) : (
+                <NoPhoto />
+              )}
+              <Name>{name}</Name>
+              <Character>{character}</Character>
+            </CastItem>
+          ))}
+        </CastList>
+      ) : (
+        <NoCast>We don't have any cast for this movie.</NoCast>
+      )}
+    </>
   );
 }
 

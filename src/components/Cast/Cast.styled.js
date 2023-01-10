@@ -33,3 +33,9 @@ export const Character = styled.p`
   font-size: 18px;
   line-height: 1;
 `;
+
+export const NoCast = styled.p`
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+`;
