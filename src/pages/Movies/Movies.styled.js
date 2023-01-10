@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const MoviesBox = styled.div``;
-
 export const MoviesForm = styled.form`
   margin-top: 20px;
   display: flex;

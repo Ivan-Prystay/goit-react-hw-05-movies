@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import noImage from '../images/no-image.svg';
-import noPhoto from '../images/no-photo.svg';
+import noImage from '../../images/no-image.svg';
+import noPhoto from '../../images/no-photo.svg';
 
 export const ListMovies = styled.ul`
   display: grid;

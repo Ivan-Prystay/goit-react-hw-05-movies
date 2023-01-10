@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getTrending } from '../servisec/api';
-import MoviesList from '../components/MoviesList';
+import MoviesList from '../components/MoviesList/MoviesList';
 import { Loader } from '../components/Loader';
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
         const data = await getTrending();
         setMovies(data.data.results);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
       } finally {
         setisLoading(false);
       }
@@ -24,10 +24,10 @@ function Home() {
   }, []);
 
   return (
-    <main>
+    <>
       {isLoading && <Loader />}
       {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
-    </main>
+    </>
   );
 }
 export default Home;

@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getMovie } from '../servisec/api';
-import MoviesList from '../components/MoviesList';
-import { notify } from '../servisec/notify';
-import { Loader } from '../components/Loader';
-import {
-  MoviesBox,
-  MoviesForm,
-  SearchInput,
-  SearchButton,
-} from './PageStyle.styled';
+import { getMovie } from '../../servisec/api';
+import MoviesList from '../../components/MoviesList/MoviesList';
+import { notify } from '../../servisec/notify';
+import { Loader } from '../../components/Loader';
+import { MoviesForm, SearchInput, SearchButton } from './Movies.styled';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -33,7 +28,7 @@ function Movies() {
 
         setMovies(data.data.results);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -58,14 +53,14 @@ function Movies() {
   };
 
   return (
-    <MoviesBox>
+    <>
       <MoviesForm onSubmit={hangleSubmit} name="query" value={query}>
         <SearchInput placeholder="Search movie" onChange={hangleChange} />
         <SearchButton type="submit">🔎</SearchButton>
       </MoviesForm>
       {isLoading && <Loader />}
       {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
-    </MoviesBox>
+    </>
   );
 }
 export default Movies;

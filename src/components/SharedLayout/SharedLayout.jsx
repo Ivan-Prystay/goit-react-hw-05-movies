@@ -1,19 +1,17 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container, Menu, MenuLink } from './SharedLayout.styled';
-import { Loader } from '../components/Loader';
+import { Loader } from '../Loader';
 
 export const SharedLayout = () => {
   return (
     <Container>
-      <header>
-        <Menu>
-          <MenuLink to="/" end>
-            Home
-          </MenuLink>
-          <MenuLink to="/movies">Movies</MenuLink>
-        </Menu>
-      </header>
+      <Menu>
+        <MenuLink to="/" end>
+          Home
+        </MenuLink>
+        <MenuLink to="/movies">Movies</MenuLink>
+      </Menu>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
